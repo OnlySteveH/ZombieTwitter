@@ -1,0 +1,5 @@
+<% @tweet = Tweet.find(params[:id]) %>
+<h2><%= @tweet.status %></h2>
+<p> Posted by <%= link_to @tweet.zombie.name, 
+  												@tweet.zombie, 
+  												data: { confirm: "Are you sure?" } %> </p>

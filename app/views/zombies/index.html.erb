@@ -1,0 +1,13 @@
+<h1>Listing zombies</h1>
+<table>
+	<tr>
+		<th>Status</th>
+		<th>Zombie</th>
+	</tr>
+	<% Zombie.all.each do |zombie| %>
+	<tr>
+		<td><%= link_to zombie.name, zombie %></td>
+		<td><%= zombie.graveyard %></td>
+	</tr>
+	<% end %>
+</table>
