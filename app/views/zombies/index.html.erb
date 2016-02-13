@@ -1,13 +1,17 @@
 <h1>Listing zombies</h1>
 <table>
 	<tr>
-		<th>Status</th>
-		<th>Zombie</th>
+		<th>Name</th>
+		<th>Graveyard</th>
 	</tr>
-	<% Zombie.all.each do |zombie| %>
+	<% zombies = Zombie.all %>
+	<% zombies.each do |zombie| %>
 	<tr>
 		<td><%= link_to zombie.name, zombie %></td>
 		<td><%= zombie.graveyard %></td>
 	</tr>
 	<% end %>
 </table>
+<% if zombies.size == 0 %>
+  <em>No Zombies found.</em>
+<% end %>
