@@ -36,4 +36,26 @@ class TweetsController < ApplicationController
   def edit
 
   end
+
+  def new
+  	@tweet = Tweet.create
+  end
+
+  def create
+    @zombie = Zombie.find(params[:zombie_id])
+    location = params[:tweet].delete :location
+    @tweet = @zombie.tweets.new(params[:tweet])
+    @tweet.build_location(location)
+
+    respond_to do |format|
+      if @tweet.save
+        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.json { render json: @tweet, status: :created, location: @tweet }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
 end
