@@ -12,7 +12,12 @@ class TweetsController < ApplicationController
 	end
 
   def index
-  	@tweets = Tweet.all
+  	if params[:name]
+  		@zombie = Zombie.where(name: params[:name]).first
+  		@tweets = @zombie.tweets
+  	else
+  		@tweets = Tweet.all
+  	end
   	respond_to do |format|
   		format.html #show.html.erb
   		format.json { render json: @tweets }
